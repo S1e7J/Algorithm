@@ -1,0 +1,4 @@
+(executable
+ (public_name binary_search)
+ (name main)
+ (libraries binary_search))
