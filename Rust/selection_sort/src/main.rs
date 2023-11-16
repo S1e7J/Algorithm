@@ -1,4 +1,4 @@
-fn selection_sort(mut list: Vec<i32>) -> Vec<i32> {
+fn selection_sort(list: &mut Vec<i32>) {
     for i in 1..list.len() {
         let mut min_id = i;
         for j in i+1..list.len() {
@@ -8,9 +8,10 @@ fn selection_sort(mut list: Vec<i32>) -> Vec<i32> {
         }
         (list[i], list[min_id]) = (list[min_id], list[i]);
     }
-    return list;
 }
 
 fn main() {
-    println!("{:?}",selection_sort(vec![1,231,541,51,2,3,12,342]));
+    let mut list = vec![1,231,541,51,2,3,12,342];
+    selection_sort(&mut list);
+    println!("{:?}",list);
 }

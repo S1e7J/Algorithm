@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+          <textarea data-template>
+            # Algoritmos
+            ---
+            ## Que es esto?
+            Esto es una presentación muy simple para presentar y explicar algunos de los algoritmos mas conocidos.
+            ---
+            ## simple search
+            ---
+            ### Explicación:
+
+            Simple Search es uno de los algoritmos mas sencillos que existen. Significa en esencia que dada una lista si deseamos encontrar el elemento con valor ~obj~ entonces iteramos sobre toda la lista hasta encontrarlo y en ese punto lo retornamos
+            ---
+            ### Codigo:
+            <pre><code class="rust">
+            <script type="text/template">
+            fn simple_search(arr: Vec<i32>, obj: i32) -> usize {
+              for i in 0..arr.len() {
+                if arr[i] == obj {
+                  i
+                }
+              }
+              arr.len()
+            }
+            </script>
+            </code></pre>
+            ---
+            ## factorial
+            ---
+            ### Explicación:
+
+            Uno de los primeros temas que uno ve para investigar algoritmos recursivos es el algoritmo para calcular el factorial de un numero. En particular su metodologia es muy basica. Con un caso base de 0 igual a 1 y un caso recursivo tal que es el facotorial de n - 1 por n.
+
+            ---
+            ### Codigo:
+            <pre><code class="rust">
+            <script type="text/template">
+            fn factorial(obj: i32) -> i32 {
+              return match obj {
+                0..=1 => 1,
+                _ => factorial(obj - 1) * obj,
+              }
+            }
+            </script>
+            </code></pre>
+            ---
+            ## recursive sum
+            ---
+            ### Explicación
+            Este  es un algoritmo muy simple que solo sirve como ejercicio para trabajar con recursividad. En particular para trabajar con la suma de todos los elementos de una lista
+            ---
+            ### Codigo
+            <pre><code class="rust">
+            <script type="text/template">
+              fn recursive_sum(arr: Vec<i32>) -> i32 {
+              return match arr.len() {
+                1 => arr[0],
+                _ => recursive_sum(arr[1..].to_vec()),
+              }
+            }
+            </script>
+            </code></pre>
+            ---
+            ## Selection Sort
+            ---
+            ### Explicación
+            En este caso tenemos un sistema de sorteo bastante simple. lo unico que hace es recorrer la lista el cuadrado n y cada vez que la recorre encuentra el elemento mas pequeño y lo devuelve.
+            ---
+            ### Codigo
+            <pre><code class="rust">
+            <script type="text/template">
+              fn selection_sort(list: &mut Vec<i32>) {
+                for i in 1..list.len() {
+                  let mut min_id = i;
+                  for j in i+1..list.len() {
+                    if list[min_id] > list[j] {
+                      min_id = j;
+                      }
+                    }
+                  (list[i], list[min_id]) = (list[min_id], list[i]);
+                  }
+              }
+            </script>
+            </code></pre>
+            ---
+            ## QuickSort
+            ---
+            ### Explicación
+            Quicksort es el algoritmo mas rapido que conocemos en su termino medio. En este caso lo que hace es tomar un elemento y dividir la lista en mayores y menores que el y luego se llama  a si misma en cada una de las partes.
+            ---
+            ### Codigo
+            <pre><code data-trim data-noescape class="rust">
+            <script type="text/template">
+              fn quicksort(list: Vec<i32>) -> Vec<i32> {
+                if list.len() < 2{
+                  return list;
+                } else {
+                  let pivot = list[0];
+                  let (smalls, bigs) = list[1..]
+                    .iter()
+                    .partition(|x| *x < &pivot);
+                  return [quicksort(smalls), vec![pivot], quicksort(bigs)]
+                    .concat();
+                }
+              }
+            </script>
+            </code></pre>
+          </textarea>
+        </section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
